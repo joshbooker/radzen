@@ -46,8 +46,7 @@
           "type": "string"
         },
         "Picture": {
-          "type": "string",
-          "format": "base64"
+          "type": "string"
         },
         "NorthwindProducts": {
           "type": "array",
@@ -135,7 +134,8 @@
             "type": "Customer",
             "principalKey": "CustomerID",
             "name": "Customer",
-            "textProperty": "CustomerID"
+            "textProperty": "CustomerID",
+            "navigationProperty": "CustomerCustomerDemos"
           },
           "x-key": true,
           "x-navigation": []
@@ -148,7 +148,8 @@
             "type": "CustomerDemographic",
             "principalKey": "CustomerTypeID",
             "name": "CustomerDemographic",
-            "textProperty": "CustomerTypeID"
+            "textProperty": "CustomerTypeID",
+            "navigationProperty": "CustomerCustomerDemos"
           },
           "x-key": true,
           "x-navigation": []
@@ -226,6 +227,10 @@
             }
           ]
         },
+        "ReportsTo": {
+          "type": "integer",
+          "format": "int32"
+        },
         "LastName": {
           "type": "string"
         },
@@ -268,8 +273,7 @@
           "type": "string"
         },
         "Photo": {
-          "type": "string",
-          "format": "base64"
+          "type": "string"
         },
         "Notes": {
           "type": "string"
@@ -306,7 +310,8 @@
             "type": "Employee",
             "principalKey": "EmployeeID",
             "name": "Employee",
-            "textProperty": "LastName"
+            "textProperty": "LastName",
+            "navigationProperty": "EmployeeTerritories"
           },
           "x-key": true,
           "x-navigation": []
@@ -319,7 +324,8 @@
             "type": "Territory",
             "principalKey": "TerritoryID",
             "name": "Territory",
-            "textProperty": "TerritoryID"
+            "textProperty": "TerritoryID",
+            "navigationProperty": "EmployeeTerritories"
           },
           "x-key": true,
           "x-navigation": []
@@ -374,7 +380,8 @@
             "type": "Customer",
             "principalKey": "CustomerID",
             "name": "Customer",
-            "textProperty": "CustomerID"
+            "textProperty": "CustomerID",
+            "navigationProperty": "NorthwindOrders"
           }
         },
         "EmployeeID": {
@@ -386,7 +393,8 @@
             "type": "Employee",
             "principalKey": "EmployeeID",
             "name": "Employee",
-            "textProperty": "LastName"
+            "textProperty": "LastName",
+            "navigationProperty": "NorthwindOrders"
           }
         },
         "OrderDate": {
@@ -472,7 +480,8 @@
             "type": "NorthwindOrder",
             "principalKey": "OrderID",
             "name": "NorthwindOrder",
-            "textProperty": "CustomerID"
+            "textProperty": "CustomerID",
+            "navigationProperty": "NorthwindOrderDetails"
           },
           "x-key": true,
           "x-navigation": []
@@ -486,7 +495,8 @@
             "type": "NorthwindProduct",
             "principalKey": "ProductID",
             "name": "NorthwindProduct",
-            "textProperty": "ProductName"
+            "textProperty": "ProductName",
+            "navigationProperty": "NorthwindOrderDetails"
           },
           "x-key": true,
           "x-navigation": []
@@ -557,7 +567,8 @@
             "type": "Supplier",
             "principalKey": "SupplierID",
             "name": "Supplier",
-            "textProperty": "CompanyName"
+            "textProperty": "CompanyName",
+            "navigationProperty": "NorthwindProducts"
           }
         },
         "CategoryID": {
@@ -569,7 +580,8 @@
             "type": "Category",
             "principalKey": "CategoryID",
             "name": "Category",
-            "textProperty": "CategoryName"
+            "textProperty": "CategoryName",
+            "navigationProperty": "NorthwindProducts"
           }
         },
         "QuantityPerUnit": {
@@ -742,7 +754,8 @@
             "type": "Region",
             "principalKey": "RegionID",
             "name": "Region",
-            "textProperty": "RegionDescription"
+            "textProperty": "RegionDescription",
+            "navigationProperty": "Territories"
           }
         },
         "EmployeeTerritories": {
@@ -768,6 +781,90 @@
       "type": "object",
       "required": [
         "TerritoryID"
+      ]
+    },
+    "Northwind.Models.ApplicationUser": {
+      "properties": {
+        "RoleNames": {
+          "type": "object"
+        },
+        "Id": {
+          "type": "string",
+          "x-key": true,
+          "x-navigation": []
+        },
+        "UserName": {
+          "type": "string"
+        },
+        "NormalizedUserName": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "NormalizedEmail": {
+          "type": "string"
+        },
+        "EmailConfirmed": {
+          "type": "boolean"
+        },
+        "SecurityStamp": {
+          "type": "string"
+        },
+        "ConcurrencyStamp": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "PhoneNumberConfirmed": {
+          "type": "boolean"
+        },
+        "TwoFactorEnabled": {
+          "type": "boolean"
+        },
+        "LockoutEnd": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "LockoutEnabled": {
+          "type": "boolean"
+        },
+        "AccessFailedCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "type": "object",
+      "required": [
+        "Id",
+        "EmailConfirmed",
+        "PhoneNumberConfirmed",
+        "TwoFactorEnabled",
+        "LockoutEnabled",
+        "AccessFailedCount"
+      ]
+    },
+    "Microsoft.AspNetCore.Identity.IdentityRole": {
+      "properties": {
+        "Id": {
+          "type": "string",
+          "x-key": true,
+          "x-navigation": []
+        },
+        "Name": {
+          "type": "string"
+        },
+        "NormalizedName": {
+          "type": "string"
+        },
+        "ConcurrencyStamp": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "required": [
+        "Id"
       ]
     }
   },
@@ -807,20 +904,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -997,20 +1090,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -1184,20 +1273,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -1389,20 +1474,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -1576,20 +1657,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -1766,20 +1843,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -1974,20 +2047,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -2164,20 +2233,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -2375,20 +2440,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -2565,20 +2626,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -2755,20 +2812,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -2945,20 +2998,16 @@
             "in": "query"
           },
           {
-            "name": "$count",
-            "type": "boolean",
+            "name": "$select",
+            "type": "string",
             "required": false,
             "in": "query"
           },
           {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$select",
-            "type": "string"
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
           }
         ],
         "responses": {
@@ -3096,6 +3145,375 @@
           }
         }
       }
+    },
+    "/ApplicationUsers": {
+      "get": {
+        "operationId": "getApplicationUsers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$select",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of ApplicationUser",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Northwind.Models.ApplicationUser"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createApplicationUser",
+        "parameters": [
+          {
+            "name": "ApplicationUser",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Northwind.Models.ApplicationUser"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/Northwind.Models.ApplicationUser"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ApplicationUsers('{Id}')": {
+      "get": {
+        "operationId": "getApplicationUserById",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ApplicationUser.",
+            "schema": {
+              "$ref": "#/definitions/Northwind.Models.ApplicationUser"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteApplicationUser",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateApplicationUser",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "ApplicationUser",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Northwind.Models.ApplicationUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ApplicationUser.",
+            "schema": {
+              "$ref": "#/definitions/Northwind.Models.ApplicationUser"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ApplicationRoles": {
+      "get": {
+        "operationId": "getApplicationRoles",
+        "parameters": [
+          {
+            "name": "$filter",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$top",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$skip",
+            "type": "integer",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$orderby",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$expand",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$select",
+            "type": "string",
+            "required": false,
+            "in": "query"
+          },
+          {
+            "name": "$count",
+            "type": "boolean",
+            "required": false,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of IdentityRole",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Microsoft.AspNetCore.Identity.IdentityRole"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIdentityRole",
+        "parameters": [
+          {
+            "name": "IdentityRole",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.AspNetCore.Identity.IdentityRole"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.AspNetCore.Identity.IdentityRole"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ApplicationRoles('{Id}')": {
+      "get": {
+        "operationId": "getIdentityRoleById",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A IdentityRole.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.AspNetCore.Identity.IdentityRole"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteIdentityRole",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIdentityRole",
+        "parameters": [
+          {
+            "name": "Id",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "IdentityRole",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Microsoft.AspNetCore.Identity.IdentityRole"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A IdentityRole.",
+            "schema": {
+              "$ref": "#/definitions/Microsoft.AspNetCore.Identity.IdentityRole"
+            }
+          },
+          "204": {
+            "description": "Empty response."
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
     }
+  },
+  "components": {
+    "schemas": {}
   }
 }

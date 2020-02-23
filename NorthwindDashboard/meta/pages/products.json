@@ -243,7 +243,11 @@
                   "template": "",
                   "title": "",
                   "type": "grid",
-                  "value": ""
+                  "value": "",
+                  "confirmDeleteText": "Are you sure you want to delete this record?",
+                  "confirmDeleteTitle": "Confirmation",
+                  "confirmDeleteOkText": "Ok",
+                  "confirmDeleteCancelText": "Cancel"
                 }
               ],
               "type": "col"

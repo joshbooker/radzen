@@ -1,5 +1,7 @@
 {
-  "access": "Everybody",
+  "access": [
+    "Everybody"
+  ],
   "components": [
     {
       "type": "content",
@@ -181,7 +183,9 @@
                       "required": false,
                       "title": "Freight",
                       "type": "number",
-                      "requiredText": "is required"
+                      "requiredText": "is required",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
                     },
                     {
                       "property": "ShipName",

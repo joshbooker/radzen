@@ -172,28 +172,36 @@
                       "required": false,
                       "requiredText": "is required",
                       "title": "Unit Price",
-                      "type": "number"
+                      "type": "number",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
                     },
                     {
                       "property": "UnitsInStock",
                       "required": false,
                       "requiredText": "is required",
                       "title": "Units In Stock",
-                      "type": "integer"
+                      "type": "integer",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
                     },
                     {
                       "property": "UnitsOnOrder",
                       "required": false,
                       "requiredText": "is required",
                       "title": "Units On Order",
-                      "type": "integer"
+                      "type": "integer",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
                     },
                     {
                       "property": "ReorderLevel",
                       "required": false,
                       "requiredText": "is required",
                       "title": "Reorder Level",
-                      "type": "integer"
+                      "type": "integer",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
                     },
                     {
                       "property": "Discontinued",

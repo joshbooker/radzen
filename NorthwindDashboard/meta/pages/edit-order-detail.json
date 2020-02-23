@@ -1,5 +1,7 @@
 {
-  "access": "Everybody",
+  "access": [
+    "Everybody"
+  ],
   "components": [
     {
       "components": [
@@ -162,21 +164,27 @@
                       "required": [],
                       "requiredText": "is required",
                       "title": "Unit Price",
-                      "type": "number"
+                      "type": "number",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
                     },
                     {
                       "property": "Quantity",
                       "required": [],
                       "requiredText": "is required",
                       "title": "Quantity",
-                      "type": "integer"
+                      "type": "integer",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
                     },
                     {
                       "property": "Discount",
                       "required": [],
                       "requiredText": "is required",
                       "title": "Discount",
-                      "type": "number"
+                      "type": "number",
+                      "minText": "cannot be less than",
+                      "maxText": "cannot be more than"
                     }
                   ],
                   "name": "form0",

@@ -1,5 +1,7 @@
 {
-  "access": "Everybody",
+  "access": [
+    "Everybody"
+  ],
   "components": [
     {
       "components": [
@@ -148,7 +150,8 @@
                       "property": "Photo",
                       "requiredText": "is required",
                       "title": "Photo",
-                      "type": "file"
+                      "type": "file",
+                      "chooseText": "Choose"
                     }
                   ],
                   "name": "form0",

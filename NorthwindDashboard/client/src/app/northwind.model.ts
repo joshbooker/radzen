@@ -44,6 +44,7 @@ export interface CustomerDemographic {
 
 export interface Employee {
   EmployeeID: number;
+  ReportsTo: number;
   LastName: string;
   FirstName: string;
   Title: string;
@@ -144,4 +145,29 @@ export interface Territory {
   RegionID: number;
   EmployeeTerritories: Array<EmployeeTerritory>;
   Region: Region;
+}
+
+export interface ApplicationUser {
+  RoleNames: Object;
+  Id: string;
+  UserName: string;
+  NormalizedUserName: string;
+  Email: string;
+  NormalizedEmail: string;
+  EmailConfirmed: boolean;
+  SecurityStamp: string;
+  ConcurrencyStamp: string;
+  PhoneNumber: string;
+  PhoneNumberConfirmed: boolean;
+  TwoFactorEnabled: boolean;
+  LockoutEnd: string;
+  LockoutEnabled: boolean;
+  AccessFailedCount: number;
+}
+
+export interface IdentityRole {
+  Id: string;
+  Name: string;
+  NormalizedName: string;
+  ConcurrencyStamp: string;
 }
